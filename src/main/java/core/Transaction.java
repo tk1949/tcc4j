@@ -82,7 +82,8 @@ public class Transaction implements Closeable
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return new Gson().toJson(this);
     }
 }
