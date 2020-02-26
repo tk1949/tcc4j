@@ -2,7 +2,7 @@ package tools;
 
 import java.util.Random;
 
-public class IdWorker
+public final class IdWorker
 {
     public static final IdWorker build = new IdWorker();
 
