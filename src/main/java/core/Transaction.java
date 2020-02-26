@@ -77,7 +77,6 @@ public class Transaction implements Closeable
     @Override
     public void close()
     {
-        System.out.println(this);
         partner.clear();
         TransactionPool.remove(txId);
     }
