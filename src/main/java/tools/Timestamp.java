@@ -10,6 +10,7 @@ public final class Timestamp
 
     static
     {
+        now = System.currentTimeMillis();
         TaskScheduler.scheduleAtFixedRate(
                 () -> now = System.currentTimeMillis(),
                 0L, 1L, TimeUnit.MILLISECONDS
