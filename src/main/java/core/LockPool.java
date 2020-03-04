@@ -1,12 +1,22 @@
 package core;
 
+import scheduler.TaskScheduler;
+import tools.Timestamp;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public class LockPool
 {
     private static final Map<String, Lock> lockMaps = new ConcurrentSkipListMap<>();
 
+    static
+    {
+        TaskScheduler.scheduleAtFixedRate(LockPool::shuffle, 1000L, 1000L, TimeUnit.MILLISECONDS);
+    }
+    
     public static boolean add(Lock lock)
     {
         return ! lock.equals(lockMaps.putIfAbsent(lock.getLockId(), lock));
@@ -24,6 +34,10 @@ public class LockPool
 
     private static void shuffle()
     {
-
+        long now = Timestamp.cacheTimeMillis();
+        lockMaps.values()
+                .parallelStream()
+                .filter(lock -> lock.getTtl() < now)
+                .forEach(lock -> lockMaps.remove(lock.getLockId()));
     }
 }
