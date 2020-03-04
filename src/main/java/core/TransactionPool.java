@@ -22,7 +22,7 @@ public class TransactionPool
 
     public static void add(Transaction tx)
     {
-        txMaps.put(tx.getTxId(), tx);
+        txMaps.putIfAbsent(tx.getTxId(), tx);
     }
 
     public static Transaction find(String txId)
@@ -30,12 +30,12 @@ public class TransactionPool
         return txMaps.get(txId);
     }
 
-    public static Transaction remove(String txId)
+    public static void remove(String txId)
     {
-        return txMaps.remove(txId);
+        txMaps.remove(txId);
     }
 
-    public static void shuffle()
+    private static void shuffle()
     {
         long now = Timestamp.cacheTimeMillis();
         txMaps.values()

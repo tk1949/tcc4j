@@ -1,11 +1,11 @@
-package network.message;
+package network.message.tx;
 
 import core.Transaction;
 import core.TransactionPool;
 import io.netty.channel.Channel;
+import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tools.Timestamp;
 
 /**
  * step 1
@@ -21,7 +21,7 @@ public class TryMessage implements BaseMessage
     public TryMessage(String txId, long ttl, int size)
     {
         this.txId = txId;
-        this.ttl  = ttl + Timestamp.cacheTimeMillis() + 1000L;
+        this.ttl  = ttl;
         this.size = size;
     }
 

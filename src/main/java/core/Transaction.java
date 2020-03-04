@@ -7,8 +7,9 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.Getter;
 import network.message.BaseMessage;
-import network.message.CancelMessage;
-import network.message.CommitMessage;
+import network.message.tx.CancelMessage;
+import network.message.tx.CommitMessage;
+import tools.Timestamp;
 
 import java.io.Closeable;
 import java.util.LinkedList;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  */
 @Getter
-public class Transaction implements Closeable
+public final class Transaction implements Closeable
 {
     private String       txId;
     private long         ttl;
@@ -32,7 +33,7 @@ public class Transaction implements Closeable
     public Transaction(String txId, long ttl, int targetSize, Channel sponsor)
     {
         this.txId       = txId;
-        this.ttl        = ttl;
+        this.ttl        = Timestamp.cacheTimeMillis() + ttl + 1000L;
         this.targetSize = targetSize;
         this.replySize  = 0;
 
@@ -53,7 +54,7 @@ public class Transaction implements Closeable
         }
     }
 
-    public void commit()
+    private void commit()
     {
         CommitMessage message = new CommitMessage(txId);
         transmit(message);
@@ -69,7 +70,7 @@ public class Transaction implements Closeable
         close();
     }
 
-    public void transmit(BaseMessage message)
+    private void transmit(BaseMessage message)
     {
         partner.writeAndFlush(message);
     }

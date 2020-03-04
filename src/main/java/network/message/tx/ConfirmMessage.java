@@ -1,8 +1,9 @@
-package network.message;
+package network.message.tx;
 
 import core.Transaction;
 import core.TransactionPool;
 import io.netty.channel.Channel;
+import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

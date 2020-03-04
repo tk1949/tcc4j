@@ -1,9 +1,9 @@
 import io.netty.channel.nio.NioEventLoopGroup;
 import network.Spoiler;
-import network.message.ConfirmMessage;
-import network.message.TryMessage;
+import network.message.tx.ConfirmMessage;
+import network.message.tx.TryMessage;
 
-public class Network
+public class Tx
 {
     public static void main(String[] args) throws InterruptedException
     {
