@@ -6,7 +6,7 @@ import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DestroyLockMessage implements BaseMessage
+public class DestroyLockMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(DestroyLockMessage.class);
 
@@ -26,11 +26,5 @@ public class DestroyLockMessage implements BaseMessage
         message.transmit(channel);
 
         logger.info(channel.remoteAddress() + " -> 分布式锁销毁 -> " + lockId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

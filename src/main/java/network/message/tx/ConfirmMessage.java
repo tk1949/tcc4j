@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * step 2
  */
-public class ConfirmMessage implements BaseMessage
+public class ConfirmMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(ConfirmMessage.class);
 
@@ -32,11 +32,5 @@ public class ConfirmMessage implements BaseMessage
         }
         tx.addChannel(channel);
         logger.info(channel.remoteAddress() + " -> 事务一致 -> " + txId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

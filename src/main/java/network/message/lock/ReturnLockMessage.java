@@ -7,7 +7,7 @@ import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ReturnLockMessage implements BaseMessage
+public class ReturnLockMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(ReturnLockMessage.class);
 
@@ -28,11 +28,5 @@ public class ReturnLockMessage implements BaseMessage
         message.transmit(channel);
 
         logger.info(channel.remoteAddress() + " -> 分布式锁归还 -> " + lockId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

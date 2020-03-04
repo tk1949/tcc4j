@@ -5,7 +5,7 @@ import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BorrowResultMessage implements BaseMessage
+public class BorrowResultMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(BorrowResultMessage.class);
 
@@ -22,11 +22,5 @@ public class BorrowResultMessage implements BaseMessage
     public void consume(Channel channel)
     {
         logger.info(channel.remoteAddress() + " -> 分布式锁获取 -> " + lockId + " ,结果 -> " + result);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

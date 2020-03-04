@@ -7,7 +7,7 @@ import network.message.BaseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CreateLockMessage implements BaseMessage
+public class CreateLockMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(CreateLockMessage.class);
 
@@ -32,11 +32,5 @@ public class CreateLockMessage implements BaseMessage
         message.transmit(channel);
 
         logger.info(channel.remoteAddress() + " -> 分布式锁创建 -> " + lockId + " ,数量 -> " + amount);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

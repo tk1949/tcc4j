@@ -38,7 +38,7 @@ public class LockPool
         long now = Timestamp.cacheTimeMillis();
         lockMaps.values()
                 .parallelStream()
-                .filter(lock -> lock.getTtl() != 0 && lock.getTtl() < now)
+                .filter(lock -> lock.getTtl() != 0L && lock.getTtl() < now)
                 .forEach(Lock::close);
     }
 }

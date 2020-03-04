@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * step 3.2
  */
-public class CancelMessage implements BaseMessage
+public class CancelMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(CancelMessage.class);
 
@@ -23,11 +23,5 @@ public class CancelMessage implements BaseMessage
     public void consume(Channel channel)
     {
         logger.info(channel.remoteAddress() + " -> 事务取消 -> " + txId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

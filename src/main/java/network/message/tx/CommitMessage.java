@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * step 3.1
  */
-public class CommitMessage implements BaseMessage
+public class CommitMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(CommitMessage.class);
 
@@ -23,11 +23,5 @@ public class CommitMessage implements BaseMessage
     public void consume(Channel channel)
     {
         logger.info(channel.remoteAddress() + " -> 事务提交 -> " + txId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import tools.Timestamp;
 
 import java.io.Closeable;
-import java.io.IOException;
 
 @Getter
 public final class Lock implements Closeable
@@ -17,7 +16,7 @@ public final class Lock implements Closeable
     public Lock(String lockId, long ttl, int amount)
     {
         this.lockId = lockId;
-        this.ttl    = ttl == 0 ? 0 : Timestamp.cacheTimeMillis() + ttl;
+        this.ttl    = ttl == 0L ? 0L : Timestamp.cacheTimeMillis() + ttl;
         this.amount = this.remainingAmount = amount;
     }
 

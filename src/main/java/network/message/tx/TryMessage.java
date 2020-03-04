@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * step 1
  */
-public class TryMessage implements BaseMessage
+public class TryMessage extends BaseMessage
 {
     private static final Logger logger = LoggerFactory.getLogger(TryMessage.class);
 
@@ -30,11 +30,5 @@ public class TryMessage implements BaseMessage
     {
         TransactionPool.add(new Transaction(txId, ttl, size, channel));
         logger.info(channel.remoteAddress() + " -> 事务创建 -> " + txId);
-    }
-
-    @Override
-    public void transmit(Channel channel)
-    {
-        channel.writeAndFlush(this);
     }
 }
