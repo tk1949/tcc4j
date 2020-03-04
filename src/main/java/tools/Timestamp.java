@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class Timestamp
 {
-    private static volatile long now;
+    private static long now;
 
     static
     {

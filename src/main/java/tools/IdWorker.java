@@ -1,6 +1,6 @@
 package tools;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public final class IdWorker
 {
@@ -16,7 +16,7 @@ public final class IdWorker
     private static final long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATACENTER_ID_BITS;
     private static final long SEQUENCE_MASK        = ~(-1L << SEQUENCE_BITS);
 
-    private static final Random r = new Random();
+    private static final SecureRandom r = new SecureRandom ();
 
     private final long workerId;
     private final long datacenterId;
