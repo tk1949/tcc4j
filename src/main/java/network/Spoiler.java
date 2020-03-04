@@ -157,7 +157,7 @@ public class Spoiler
                 IdleStateEvent e = (IdleStateEvent) evt;
                 if (e.state() == IdleState.ALL_IDLE)
                 {
-                    PingMessage.ping.transmit(ctx.channel());
+                    ctx.channel().writeAndFlush(Unpooled.wrappedBuffer(PingMessage.ping));
                 }
             }
         }
