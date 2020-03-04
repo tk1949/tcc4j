@@ -45,10 +45,8 @@ public final class Lock
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        return obj instanceof Lock && this.lockId.equals(((Lock) obj).lockId);
+    public boolean equals(Object obj)
+    {
+        return this == obj || obj instanceof Lock && this.lockId.equals(((Lock) obj).lockId);
     }
 }
