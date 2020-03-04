@@ -3,8 +3,11 @@ package core;
 import lombok.Getter;
 import tools.Timestamp;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 @Getter
-public final class Lock
+public final class Lock implements Closeable
 {
     private String lockId;
     private long   ttl;
@@ -48,5 +51,10 @@ public final class Lock
     public boolean equals(Object obj)
     {
         return this == obj || obj instanceof Lock && this.lockId.equals(((Lock) obj).lockId);
+    }
+
+    @Override
+    public void close() {
+        LockPool.remove(lockId);
     }
 }

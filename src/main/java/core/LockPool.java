@@ -39,6 +39,6 @@ public class LockPool
         lockMaps.values()
                 .parallelStream()
                 .filter(lock -> lock.getTtl() != 0 && lock.getTtl() < now)
-                .forEach(lock -> lockMaps.remove(lock.getLockId()));
+                .forEach(Lock::close);
     }
 }
