@@ -14,7 +14,7 @@ public final class Lock
     public Lock(String lockId, long ttl, int amount)
     {
         this.lockId = lockId;
-        this.ttl    = ttl == 0 ? Long.MAX_VALUE : Timestamp.cacheTimeMillis() + ttl;
+        this.ttl    = ttl == 0 ? 0 : Timestamp.cacheTimeMillis() + ttl;
         this.amount = this.remainingAmount = amount;
     }
 

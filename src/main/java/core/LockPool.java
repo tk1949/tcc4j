@@ -18,7 +18,9 @@ public class LockPool
     
     public static boolean add(Lock lock)
     {
-        return ! lock.equals(lockMaps.putIfAbsent(lock.getLockId(), lock));
+        return !lock.equals(
+                lockMaps.putIfAbsent(lock.getLockId(), lock)
+        );
     }
 
     public static Lock find(String lockId)
@@ -36,7 +38,7 @@ public class LockPool
         long now = Timestamp.cacheTimeMillis();
         lockMaps.values()
                 .parallelStream()
-                .filter(lock -> lock.getTtl() < now)
+                .filter(lock -> lock.getTtl() != 0 && lock.getTtl() < now)
                 .forEach(lock -> lockMaps.remove(lock.getLockId()));
     }
 }

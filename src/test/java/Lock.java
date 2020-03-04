@@ -11,7 +11,7 @@ public class Lock
         Spoiler spoiler = new Spoiler(new NioEventLoopGroup(), "127.0.0.1", 10000);
         spoiler.start();
 
-        spoiler.submission(new CreateLockMessage("001", 1000, 1));
+        spoiler.submission(new CreateLockMessage("001", 100000000, 1));
 
         Thread.sleep(1000);
 
