@@ -54,7 +54,8 @@ public final class Lock implements Closeable
     }
 
     @Override
-    public void close() {
+    public void close()
+    {
         LockPool.remove(lockId);
     }
 }
